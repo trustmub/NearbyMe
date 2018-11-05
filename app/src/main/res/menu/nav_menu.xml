@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/destination_explore"
+          android:icon="@drawable/ic_near_me_black_24dp"
+          android:title="Explore"/>
+
+    <item android:id="@+id/destination_more"
+          android:icon="@drawable/ic_more_horiz_black_24dp"
+          android:title="More"/>
+
+</menu>
