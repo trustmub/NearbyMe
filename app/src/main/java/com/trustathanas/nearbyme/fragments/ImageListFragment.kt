@@ -30,7 +30,7 @@ class ImageListFragment : BaseFragment() {
         val view = inflater.inflate(getLayout(), container, false)
 
         //TODO make the client id reference the clicked venue. get it from the bundle passed
-        val clientId = "4e97c07961af7d268f0163db"
+        val clientId = arguments?.getString("VenueItem")!!
 
         val layoutManager: RecyclerView.LayoutManager = GridLayoutManager(activity, 2)
 

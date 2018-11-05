@@ -63,8 +63,8 @@ class ExploreFragment : BaseFragment() {
             adapter = CategoriesAdapter(activity!!, it?.response?.venues!!) {
                 val bundle = Bundle()
 
-                bundle.putParcelable("VenueItem", VenueParcelable(venueId = it.id, venueName = it.name))
-
+//                bundle.putParcelable("VenueItem", VenueParcelable(venueId = it.id, venueName = it.name))
+                bundle.putString("VenueItem", it.id)
                 Navigation.findNavController(view).navigate(R.id.destination_image_list, bundle)
             }
             rv_categories_list.let { recyclerView ->
