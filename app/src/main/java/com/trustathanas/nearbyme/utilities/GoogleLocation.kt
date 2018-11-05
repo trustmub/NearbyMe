@@ -1,24 +1,17 @@
 package com.trustathanas.nearbyme.utilities
 
-import android.Manifest.permission.ACCESS_COARSE_LOCATION
+import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
+import android.location.Location
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
-import android.support.v4.content.PermissionChecker
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
+import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.trustathanas.nearbyme.App
-import java.security.Permission
-import java.security.Permissions
-import android.Manifest
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
-import android.location.Location
-import com.google.android.gms.location.FusedLocationProviderClient
 import com.trustathanas.nearbyme.models.LocationModel
-import java.lang.reflect.Modifier
 
 
 object GoogleLocation : GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {

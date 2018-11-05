@@ -13,6 +13,7 @@ import com.trustathanas.nearbyme.adapters.VenuePictureAdapter
 import com.trustathanas.nearbyme.viewmodels.ImagesViewModel
 import kotlinx.android.synthetic.main.frgament_image_list_layout.view.*
 import org.koin.android.viewmodel.ext.android.viewModel
+import java.util.function.ToDoubleBiFunction
 
 class ImageListFragment : BaseFragment() {
 
@@ -27,6 +28,8 @@ class ImageListFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(getLayout(), container, false)
+
+        //TODO make the client id reference the clicked venue. get it from the bundle passed
         val clientId = "4e97c07961af7d268f0163db"
 
         val layoutManager: RecyclerView.LayoutManager = GridLayoutManager(activity, 2)

@@ -1,6 +1,5 @@
 package com.trustathanas.nearbyme.adapters
 
-import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +8,6 @@ import android.widget.ImageView
 import com.squareup.picasso.Picasso
 import com.trustathanas.nearbyme.R
 import com.trustathanas.nearbyme.models.PictureItemsItem
-import kotlinx.android.synthetic.main.venue_picture_item_layout.view.*
 
 class VenuePictureAdapter(private val picturePhoto: List<PictureItemsItem>) :
     RecyclerView.Adapter<VenuePictureAdapter.VenuePictureViewHolder>() {
