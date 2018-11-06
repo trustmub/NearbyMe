@@ -2,11 +2,10 @@ package com.trustathanas.nearbyme.repository
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
+import android.arch.lifecycle.Observer
+import com.trustathanas.nearbyme.App
 import com.trustathanas.nearbyme.models.RequestStatus
 import com.trustathanas.nearbyme.models.VenuesModel
-import com.trustathanas.nearbyme.utilities.FOURSQUARE_CLIENT_ID
-import com.trustathanas.nearbyme.utilities.FOURSQUARE_CLIENT_SECRET
-import com.trustathanas.nearbyme.utilities.GoogleLocation
 import com.trustathanas.nearbyme.utilities.SharedPreferencesMain
 import com.trustathanas.nearbyme.webservices.WebserviceInterface
 import retrofit2.Call
@@ -23,14 +22,16 @@ class CategoriesRepository constructor(
 
     fun getRequestStatus(): LiveData<RequestStatus> = requestResult
 
-    fun getCategories(): LiveData<VenuesModel> {
+    fun getCategories(latitude: String, longitude: String): LiveData<VenuesModel> {
         requestResult.value = RequestStatus.CONNECTING
         val results: MutableLiveData<VenuesModel> = MutableLiveData()
-        val latitude = -25.9 //sharedPreferencesMain . latitude //-25.9
-        val longitude = 28.1 // sharedPreferencesMain . longitude // 28.1
+//        val latitude = sharedPreferencesMain.latitude
+//        val longitude = sharedPreferencesMain.longitude
         webservices.getCategories(
             ll = "${latitude.toString()},${longitude.toString()}"
         ).enqueue(CategoriesCallBack(results))
+
+
         return results
     }
 
@@ -42,7 +43,6 @@ class CategoriesRepository constructor(
         }
 
         override fun onResponse(call: Call<VenuesModel>, response: Response<VenuesModel>) {
-            println("In Result ${results.value}")
             println("In Result ${response.code()}")
             requestResult.value = RequestStatus.CONNECTED
 

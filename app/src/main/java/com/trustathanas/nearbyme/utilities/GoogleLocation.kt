@@ -14,7 +14,8 @@ import com.trustathanas.nearbyme.App
 import com.trustathanas.nearbyme.models.LocationModel
 
 
-object GoogleLocation : GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+class GoogleLocation(val sharedPreferencesMain: SharedPreferencesMain) : GoogleApiClient.ConnectionCallbacks,
+    GoogleApiClient.OnConnectionFailedListener {
 
 
     var fusedLocationProvider: FusedLocationProviderClient?
@@ -38,12 +39,17 @@ object GoogleLocation : GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnC
                     val latitude = loc.latitude
                     val longitude = loc.longitude
 
+                    sharedPreferencesMain.latitude = loc.latitude.toString()
+                    sharedPreferencesMain.longitude = loc.longitude.toString()
+
+
                     App.locationValue.value =
                             LocationModel(latitude = latitude.toString(), longitude = longitude.toString())
+
                 }
             }
         } else {
-            App.locationValue.value = LocationModel(null, null)
+            App.locationValue.value = LocationModel()
         }
     }
 

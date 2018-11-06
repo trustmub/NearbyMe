@@ -11,10 +11,10 @@ class SharedPreferencesMain(context: Context) {
     private val LONGITUDE = "longitude"
 
     var latitude: String?
-        get() = preferences.getString(LATITUDE, "")
+        get() = preferences.getString(LATITUDE, "37.7")
         set(value) = preferences.edit().putString(LATITUDE, value).apply()
 
     var longitude: String?
-        get() = preferences.getString(LONGITUDE, "")
+        get() = preferences.getString(LONGITUDE, "-122.4")
         set(value) = preferences.edit().putString(LONGITUDE, value).apply()
 }

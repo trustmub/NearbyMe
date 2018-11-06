@@ -14,7 +14,7 @@ class VenuePictureAdapter(private val picturePhoto: List<PictureItemsItem>) :
 
     lateinit var imageURL: String
     var imageWidth: Int = 300
-    var imageHeight: Int = 500
+    var imageHeight: Int = 300
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VenuePictureViewHolder {

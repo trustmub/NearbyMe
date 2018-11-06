@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
+import com.trustathanas.nearbyme.App
 import com.trustathanas.nearbyme.R
 import com.trustathanas.nearbyme.adapters.CategoriesAdapter
 import com.trustathanas.nearbyme.models.RequestStatus
@@ -58,22 +59,27 @@ class ExploreFragment : BaseFragment() {
 
         val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(activity)
 
-
-        categoriesViewModel.getCategories().observe(activity!!, Observer {
-            adapter = CategoriesAdapter(activity!!, it?.response?.venues!!) {
-                val bundle = Bundle()
+        App.locationValue.observe(this, Observer { cordinates ->
+            cordinates?.let {
+                categoriesViewModel.getCategories(it.latitude.toString(), it.longitude.toString())
+                    .observe(activity!!, Observer {
+                        adapter = CategoriesAdapter(activity!!, it?.response?.venues!!) {
+                            val bundle = Bundle()
 
 //                bundle.putParcelable("VenueItem", VenueParcelable(venueId = it.id, venueName = it.name))
-                bundle.putString("VenueItem", it.id)
-                Navigation.findNavController(view).navigate(R.id.destination_image_list, bundle)
-            }
-            rv_categories_list.let { recyclerView ->
-                recyclerView.adapter = adapter
-                recyclerView.layoutManager = layoutManager
-                recyclerView.setHasFixedSize(true)
+                            bundle.putString("VenueItem", it.id)
+                            Navigation.findNavController(view).navigate(R.id.destination_image_list, bundle)
+                        }
+                        rv_categories_list.let { recyclerView ->
+                            recyclerView.adapter = adapter
+                            recyclerView.layoutManager = layoutManager
+                            recyclerView.setHasFixedSize(true)
 
+                        }
+                    })
             }
         })
+
 
         view.btn_refresh_explore.setOnClickListener { v ->
             Navigation.findNavController(v).navigate(R.id.destination_explore)

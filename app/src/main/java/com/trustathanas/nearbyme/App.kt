@@ -26,8 +26,7 @@ class App : Application() {
 
     companion object {
         lateinit var appContext: Context
-        lateinit var googleLocation: GoogleApiClient
-        //        val webService = RetrofitInstance.getApiInstance()!!.create(WebserviceInterface::class.java)
+        //  lateinit var googleLocation: GoogleApiClient
         var locationValue: MutableLiveData<LocationModel> = MutableLiveData()
     }
 
@@ -39,17 +38,18 @@ class App : Application() {
 
     private fun initializeApplication() {
         appContext = applicationContext
-        googleLocation = GoogleLocation.getInstance(appContext)
+
         startKoin(this, listOf(utilitiesModules, RepositoryModules, viewModelModules))
     }
 
     val utilitiesModules = module {
         single { SharedPreferencesMain(appContext) }
+        single { GoogleLocation(get()) }
         single { get<Retrofit>().create<WebserviceInterface>(WebserviceInterface::class.java) }
         single { RetrofitInterceptor }
         single {
             Retrofit.Builder()
-                .client(RetrofitInterceptor.invoke()!!)
+                .client(RetrofitInterceptor()!!)
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
