@@ -1,10 +1,11 @@
-package com.trustathanas.nearbyme.fragments
+package com.trustathanas.nearbyme.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.trustathanas.nearbyme.R
+import com.trustathanas.nearbyme.ui.commons.BaseFragment
 
 class MoreFragment : BaseFragment() {
     override val fragTad: String

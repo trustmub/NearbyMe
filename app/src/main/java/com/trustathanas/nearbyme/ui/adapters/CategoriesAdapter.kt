@@ -1,4 +1,4 @@
-package com.trustathanas.nearbyme.adapters
+package com.trustathanas.nearbyme.ui.adapters
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView

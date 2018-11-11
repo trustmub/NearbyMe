@@ -1,6 +1,7 @@
-package com.trustathanas.nearbyme.fragments
+package com.trustathanas.nearbyme.ui.fragments
 
 import com.trustathanas.nearbyme.R
+import com.trustathanas.nearbyme.ui.commons.BaseFragment
 
 class ImageFragment: BaseFragment() {
     override val fragTad: String

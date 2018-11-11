@@ -1,4 +1,4 @@
-package com.trustathanas.nearbyme.fragments
+package com.trustathanas.nearbyme.ui.fragments
 
 import android.arch.lifecycle.Observer
 import android.os.Bundle
@@ -7,13 +7,12 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.Navigation
 import com.trustathanas.nearbyme.R
-import com.trustathanas.nearbyme.adapters.VenuePictureAdapter
+import com.trustathanas.nearbyme.ui.adapters.VenuePictureAdapter
+import com.trustathanas.nearbyme.ui.commons.BaseFragment
 import com.trustathanas.nearbyme.viewmodels.ImagesViewModel
 import kotlinx.android.synthetic.main.frgament_image_list_layout.view.*
 import org.koin.android.viewmodel.ext.android.viewModel
-import java.util.function.ToDoubleBiFunction
 
 class ImageListFragment : BaseFragment() {
 

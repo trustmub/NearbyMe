@@ -1,4 +1,4 @@
-package com.trustathanas.nearbyme.activities
+package com.trustathanas.nearbyme.ui.activities
 
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
@@ -6,6 +6,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.trustathanas.nearbyme.R
+import com.trustathanas.nearbyme.ui.commons.BaseActivity
 
 class MainActivity : BaseActivity() {
 

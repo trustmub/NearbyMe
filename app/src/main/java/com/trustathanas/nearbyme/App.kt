@@ -5,6 +5,7 @@ import android.arch.lifecycle.MutableLiveData
 import android.content.Context
 import android.content.SharedPreferences
 import com.google.android.gms.common.api.GoogleApiClient
+import com.trustathanas.nearbyme.data.db.ApplicationDatabase
 import com.trustathanas.nearbyme.models.LocationModel
 import com.trustathanas.nearbyme.repository.CategoriesRepository
 import com.trustathanas.nearbyme.repository.ImagesRepository
@@ -17,6 +18,7 @@ import com.trustathanas.nearbyme.webservices.RetrofitInterceptor
 import com.trustathanas.nearbyme.webservices.WebserviceInterface
 import org.koin.android.ext.android.startKoin
 import org.koin.android.viewmodel.ext.koin.viewModel
+import org.koin.dsl.module.Module
 import org.koin.dsl.module.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -37,13 +39,20 @@ class App : Application() {
     }
 
     private fun initializeApplication() {
-        appContext = applicationContext
+//        appContext = applicationContext
 
-        startKoin(this, listOf(utilitiesModules, RepositoryModules, viewModelModules))
+        startKoin(this, listOf(getGeneralModules, getNetworkModules, getRepositoryModules, getViewModelModules))
     }
 
-    val utilitiesModules = module {
-        single { SharedPreferencesMain(appContext) }
+    val getGeneralModules = module {
+        single(name = "context") { applicationContext }
+    }
+
+    val getStorageModule: Module = module {
+        single { SharedPreferencesMain(get("context")) }
+
+    }
+    val getNetworkModules = module {
         single { GoogleLocation(get()) }
         single { get<Retrofit>().create<WebserviceInterface>(WebserviceInterface::class.java) }
         single { RetrofitInterceptor }
@@ -56,12 +65,12 @@ class App : Application() {
         }
     }
 
-    val RepositoryModules = module {
+    val getRepositoryModules = module {
         single { CategoriesRepository(get(), get()) }
         single { ImagesRepository(get()) }
     }
 
-    val viewModelModules = module {
+    val getViewModelModules = module {
         viewModel { CategoriesViewModel(get()) }
         viewModel { ImagesViewModel(get()) }
     }

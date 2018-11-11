@@ -1,4 +1,4 @@
-package com.trustathanas.nearbyme.fragments
+package com.trustathanas.nearbyme.ui.fragments
 
 import android.arch.lifecycle.Observer
 import android.os.Bundle
@@ -10,9 +10,9 @@ import android.view.ViewGroup
 import androidx.navigation.Navigation
 import com.trustathanas.nearbyme.App
 import com.trustathanas.nearbyme.R
-import com.trustathanas.nearbyme.adapters.CategoriesAdapter
+import com.trustathanas.nearbyme.ui.adapters.CategoriesAdapter
 import com.trustathanas.nearbyme.models.RequestStatus
-import com.trustathanas.nearbyme.models.VenueParcelable
+import com.trustathanas.nearbyme.ui.commons.BaseFragment
 import com.trustathanas.nearbyme.viewmodels.CategoriesViewModel
 import kotlinx.android.synthetic.main.fragment_explore.*
 import kotlinx.android.synthetic.main.fragment_explore.view.*

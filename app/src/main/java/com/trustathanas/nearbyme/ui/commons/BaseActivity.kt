@@ -1,4 +1,4 @@
-package com.trustathanas.nearbyme.activities
+package com.trustathanas.nearbyme.ui.commons
 
 import android.support.v7.app.AppCompatActivity
 import android.util.Log

@@ -6,13 +6,13 @@
             app:startDestination="@id/destination_explore">
 
     <fragment android:id="@+id/destination_explore"
-              android:name="com.trustathanas.nearbyme.fragments.ExploreFragment"
+              android:name="com.trustathanas.nearbyme.ui.fragments.ExploreFragment"
               android:label="ExploreFragment">
     </fragment>
     <fragment android:id="@+id/destination_more"
-              android:name="com.trustathanas.nearbyme.fragments.MoreFragment"
+              android:name="com.trustathanas.nearbyme.ui.fragments.MoreFragment"
               android:label="MoreFragment"/>
     <fragment android:id="@+id/destination_image_list"
-              android:name="com.trustathanas.nearbyme.fragments.ImageListFragment"
+              android:name="com.trustathanas.nearbyme.ui.fragments.ImageListFragment"
               android:label="ImageListFragment"/>
 </navigation>

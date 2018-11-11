@@ -4,6 +4,7 @@ import com.trustathanas.nearbyme.models.VenuePictureResponse
 import com.trustathanas.nearbyme.models.VenuesModel
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Headers
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -18,8 +19,12 @@ interface WebserviceInterface {
     //    https://api.foursquare.com/v2/venues/VENUE_ID/photos
     @GET("venues/{VENUE_ID}/photos")
     fun getVenueImages(
-        @Path("VENUE_ID") venue_id: String): Call<VenuePictureResponse>
+        @Path("VENUE_ID") venue_id: String
+    ): Call<VenuePictureResponse>
 
     //    https://fastly.4sqi.net/img/general/300x500/8267782_GaFL6AICcm0wsho2O9QFa1H7e-xwBsxpN-fKm838hHI.jpg
-    fun getSingleImage() {}
+
+    @Headers("No-Authentication: true")
+    fun getSingleImage() {
+    }
 }

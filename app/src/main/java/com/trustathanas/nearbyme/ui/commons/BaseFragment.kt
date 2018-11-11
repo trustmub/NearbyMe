@@ -1,4 +1,4 @@
-package com.trustathanas.nearbyme.fragments
+package com.trustathanas.nearbyme.ui.commons
 
 import android.content.Context
 import android.os.Bundle
