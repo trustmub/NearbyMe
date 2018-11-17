@@ -2,10 +2,6 @@ package com.trustathanas.nearbyme
 
 import android.app.Application
 import android.arch.lifecycle.MutableLiveData
-import android.content.Context
-import android.content.SharedPreferences
-import com.google.android.gms.common.api.GoogleApiClient
-import com.trustathanas.nearbyme.data.db.ApplicationDatabase
 import com.trustathanas.nearbyme.models.LocationModel
 import com.trustathanas.nearbyme.repository.CategoriesRepository
 import com.trustathanas.nearbyme.repository.ImagesRepository
@@ -14,20 +10,19 @@ import com.trustathanas.nearbyme.utilities.GoogleLocation
 import com.trustathanas.nearbyme.utilities.SharedPreferencesMain
 import com.trustathanas.nearbyme.viewmodels.CategoriesViewModel
 import com.trustathanas.nearbyme.viewmodels.ImagesViewModel
-import com.trustathanas.nearbyme.webservices.RetrofitInterceptor
-import com.trustathanas.nearbyme.webservices.WebserviceInterface
+import com.trustathanas.nearbyme.data.network.RetrofitInterceptor
+import com.trustathanas.nearbyme.data.network.WebserviceInterface
 import org.koin.android.ext.android.startKoin
 import org.koin.android.viewmodel.ext.koin.viewModel
 import org.koin.dsl.module.Module
 import org.koin.dsl.module.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import kotlin.math.sin
 
 class App : Application() {
 
     companion object {
-        lateinit var appContext: Context
+//        lateinit var appContext: Context
         //  lateinit var googleLocation: GoogleApiClient
         var locationValue: MutableLiveData<LocationModel> = MutableLiveData()
     }
@@ -41,7 +36,7 @@ class App : Application() {
     private fun initializeApplication() {
 //        appContext = applicationContext
 
-        startKoin(this, listOf(getGeneralModules, getNetworkModules, getRepositoryModules, getViewModelModules))
+        startKoin(this, listOf(getGeneralModules, getStorageModule, getNetworkModules, getRepositoryModules, getViewModelModules))
     }
 
     val getGeneralModules = module {
@@ -53,7 +48,7 @@ class App : Application() {
 
     }
     val getNetworkModules = module {
-        single { GoogleLocation(get()) }
+        single { GoogleLocation(get(), get("context")) }
         single { get<Retrofit>().create<WebserviceInterface>(WebserviceInterface::class.java) }
         single { RetrofitInterceptor }
         single {

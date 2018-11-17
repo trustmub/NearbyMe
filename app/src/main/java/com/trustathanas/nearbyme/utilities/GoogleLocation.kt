@@ -14,12 +14,12 @@ import com.trustathanas.nearbyme.App
 import com.trustathanas.nearbyme.models.LocationModel
 
 
-class GoogleLocation(val sharedPreferencesMain: SharedPreferencesMain) : GoogleApiClient.ConnectionCallbacks,
+class GoogleLocation(val sharedPreferencesMain: SharedPreferencesMain, val context: Context) : GoogleApiClient.ConnectionCallbacks,
     GoogleApiClient.OnConnectionFailedListener {
 
 
     var fusedLocationProvider: FusedLocationProviderClient?
-        get() = LocationServices.getFusedLocationProviderClient(App.appContext)
+        get() = LocationServices.getFusedLocationProviderClient(context)
         set(value) = Unit
 
     override fun onConnectionFailed(results: ConnectionResult) {
@@ -31,7 +31,7 @@ class GoogleLocation(val sharedPreferencesMain: SharedPreferencesMain) : GoogleA
         println("Connection Bundle : ${connectionHint}")
 
         if (ContextCompat.checkSelfPermission(
-                App.appContext, Manifest.permission.ACCESS_COARSE_LOCATION
+                context, Manifest.permission.ACCESS_COARSE_LOCATION
             ) == PackageManager.PERMISSION_GRANTED
         ) {
             fusedLocationProvider?.lastLocation?.addOnSuccessListener { location: Location? ->

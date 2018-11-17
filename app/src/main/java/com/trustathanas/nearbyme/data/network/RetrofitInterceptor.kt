@@ -1,4 +1,4 @@
-package com.trustathanas.nearbyme.webservices
+package com.trustathanas.nearbyme.data.network
 
 import com.trustathanas.nearbyme.utilities.FOURSQUARE_CLIENT_ID
 import com.trustathanas.nearbyme.utilities.FOURSQUARE_CLIENT_SECRET

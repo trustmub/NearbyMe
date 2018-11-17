@@ -1,4 +1,4 @@
-package com.trustathanas.nearbyme.webservices
+package com.trustathanas.nearbyme.data.network
 
 import com.trustathanas.nearbyme.models.VenuePictureResponse
 import com.trustathanas.nearbyme.models.VenuesModel

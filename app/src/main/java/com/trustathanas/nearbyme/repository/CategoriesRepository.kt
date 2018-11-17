@@ -2,12 +2,10 @@ package com.trustathanas.nearbyme.repository
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.Observer
-import com.trustathanas.nearbyme.App
 import com.trustathanas.nearbyme.models.RequestStatus
 import com.trustathanas.nearbyme.models.VenuesModel
 import com.trustathanas.nearbyme.utilities.SharedPreferencesMain
-import com.trustathanas.nearbyme.webservices.WebserviceInterface
+import com.trustathanas.nearbyme.data.network.WebserviceInterface
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
