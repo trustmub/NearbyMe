@@ -12,6 +12,8 @@ import com.trustathanas.nearbyme.viewmodels.CategoriesViewModel
 import com.trustathanas.nearbyme.viewmodels.ImagesViewModel
 import com.trustathanas.nearbyme.data.network.RetrofitInterceptor
 import com.trustathanas.nearbyme.data.network.WebserviceInterface
+import com.trustathanas.nearbyme.repository.LocationRepository
+import com.trustathanas.nearbyme.viewmodels.LocationViewModel
 import org.koin.android.ext.android.startKoin
 import org.koin.android.viewmodel.ext.koin.viewModel
 import org.koin.dsl.module.Module
@@ -22,7 +24,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class App : Application() {
 
     companion object {
-//        lateinit var appContext: Context
+        //        lateinit var appContext: Context
         //  lateinit var googleLocation: GoogleApiClient
         var locationValue: MutableLiveData<LocationModel> = MutableLiveData()
     }
@@ -36,7 +38,10 @@ class App : Application() {
     private fun initializeApplication() {
 //        appContext = applicationContext
 
-        startKoin(this, listOf(getGeneralModules, getStorageModule, getNetworkModules, getRepositoryModules, getViewModelModules))
+        startKoin(
+            this,
+            listOf(getGeneralModules, getStorageModule, getNetworkModules, getRepositoryModules, getViewModelModules)
+        )
     }
 
     val getGeneralModules = module {
@@ -63,11 +68,13 @@ class App : Application() {
     val getRepositoryModules = module {
         single { CategoriesRepository(get(), get()) }
         single { ImagesRepository(get()) }
+        single { LocationRepository(get()) }
     }
 
     val getViewModelModules = module {
         viewModel { CategoriesViewModel(get()) }
         viewModel { ImagesViewModel(get()) }
+        viewModel { LocationViewModel(get()) }
     }
 
 }
